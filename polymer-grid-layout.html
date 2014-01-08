@@ -9,6 +9,9 @@
         nodes: null,
         layout: null,
         auto: false,
+        created: function() {
+          this.layout = [];
+        },
         nodesChanged: function() {
           this.invalidate();
         },
@@ -28,7 +31,7 @@
           );
         },
         invalidate: function() {
-          if (this.layout) {
+          if (this.layout && this.layout.length) {
             // job debounces layout, only letting it occur every N ms
             this.layoutJob = this.job(this.layoutJob, this.relayout);
           }
